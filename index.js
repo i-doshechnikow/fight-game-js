@@ -20,11 +20,15 @@ class Sprite {
 
     update() {
         this.draw()
-        this.velocity.y += gravity
+
+
+        this.position.y += this.velocity.y
+        this.position.x += this.velocity.x
+
         if (this.position.y + this.height + this.velocity.y >= canvas.height) {
             this.velocity.y = 0
         } else {
-            this.position.y += this.velocity.y
+            this.velocity.y += gravity
         }
     }
 }
@@ -62,3 +66,25 @@ function animate() {
 }
 
 animate()
+
+window.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'k':
+            console.log('k')
+            player.velocity.x = 1
+            break;
+        default:
+            console.log('default')
+    }
+})
+
+window.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'k':
+            console.log('k')
+            player.velocity.x = 0
+            break;
+        default:
+            console.log('default')
+    }
+})
