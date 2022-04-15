@@ -5,12 +5,13 @@ canvas.height = 576
 canvas.width = 1024
 
 c.fillRect(0, 0, canvas.width, canvas.height)
-const gravity = 0.2
+const gravity = 0.7
 class Sprite {
     constructor({ position, velocity }) {
         this.position = position
         this.velocity = velocity
         this.height = 150
+        this.lastKey
     }
 
     draw() {
@@ -63,7 +64,10 @@ const keys = {
     d: {
         pressed: false
     },
-    w: {
+    ArrowLeft: {
+        pressed: false
+    },
+    ArrowRight: {
         pressed: false
     },
 }
@@ -80,14 +84,21 @@ function animate() {
     player.velocity.x = 0
 
     if (keys.a.pressed && lastKey === 'a') {
-        player.velocity.x = -1
+        player.velocity.x = -5
     } else if (keys.d.pressed && lastKey === 'd') {
-        player.velocity.x = 1
+        player.velocity.x = 5
+    }
+
+    enemy.velocity.x = 0
+
+    if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
+        enemy.velocity.x = -5
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
+        enemy.velocity.x = 5
     }
 }
 
 animate()
-
 
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -100,8 +111,22 @@ window.addEventListener('keydown', (event) => {
             lastKey = 'a'
             break;
         case 'w':
-            keys.w.pressed = true
-            player.velocity.y = -10
+            // keys.w.pressed = true
+            player.velocity.y = -20
+            break;
+    }
+    switch (event.key) {
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = true
+            enemy.lastKey = 'ArrowRight'
+            break;
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = true
+            enemy.lastKey = 'ArrowLeft'
+            break;
+        case 'ArrowUp':
+            // keys.ArrowUp.pressed = true
+            enemy.velocity.y = -20
             break;
         default:
             console.log('default')
@@ -116,8 +141,17 @@ window.addEventListener('keyup', (event) => {
         case 'a':
             keys.a.pressed = false
             break;
-        case 'w':
-            keys.w.pressed = false
+        default:
+            console.log('default')
+    }
+
+
+    switch (event.key) {
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = false
+            break;
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = false
             break;
         default:
             console.log('default')
