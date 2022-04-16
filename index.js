@@ -7,16 +7,25 @@ canvas.width = 1024
 c.fillRect(0, 0, canvas.width, canvas.height)
 const gravity = 0.7
 class Sprite {
-    constructor({ position, velocity }) {
+    constructor({ position, velocity, color = 'red' }) {
         this.position = position
         this.velocity = velocity
         this.height = 150
         this.lastKey
+        this.attackBox = {
+            position: this.position,
+            width: 100,
+            height: 50,
+        }
+        this.color = color
     }
 
     draw() {
-        c.fillStyle = 'red'
+        c.fillStyle = this.color
         c.fillRect(this.position.x, this.position.y, 50, this.height)
+
+        c.fillStyle = 'green'
+        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
     }
 
     update() {
@@ -49,10 +58,12 @@ const enemy = new Sprite({
     position: {
         x: 400,
         y: 100
-    }, velocity: {
+    },
+    velocity: {
         x: 0,
         y: 0
-    }
+    },
+    color: 'blue'
 })
 
 enemy.draw()
