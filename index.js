@@ -19,6 +19,7 @@ class Sprite {
             height: 50,
         }
         this.color = color
+        this.isAttaking
     }
 
     draw() {
@@ -40,6 +41,13 @@ class Sprite {
         } else {
             this.velocity.y += gravity
         }
+    }
+
+    attack() {
+        this.isAttaking = true
+        setTimeout(() => {
+            this.isAttaking = false
+        }, 100)
     }
 }
 
@@ -112,8 +120,10 @@ function animate() {
     if (player.attackBox.position.x + player.attackBox.width >= enemy.position.x
         && player.attackBox.position.x <= enemy.position.x + enemy.width
         && player.attackBox.position.y + player.attackBox.height >= enemy.position.y
-        && player.attackBox.position.y <= enemy.position.y + enemy.height) {
+        && player.attackBox.position.y <= enemy.position.y + enemy.height
+        && player.isAttaking) {
         console.log('go')
+        player.isAttaking = false
     }
 }
 
@@ -132,6 +142,9 @@ window.addEventListener('keydown', (event) => {
         case 'w':
             // keys.w.pressed = true
             player.velocity.y = -20
+            break;
+        case ' ':
+            player.attack()
             break;
     }
     switch (event.key) {
