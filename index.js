@@ -151,6 +151,11 @@ function animate() {
         console.log('go')
         player.isAttaking = false
     }
+
+    if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttaking) {
+        console.log('go enemy')
+        enemy.isAttaking = false
+    }
 }
 
 animate()
@@ -185,6 +190,10 @@ window.addEventListener('keydown', (event) => {
         case 'ArrowUp':
             // keys.ArrowUp.pressed = true
             enemy.velocity.y = -20
+            break;
+        case 'ArrowDown':
+            // enemy.isAttaking = true
+            enemy.attack()
             break;
         default:
             console.log('default')
