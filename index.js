@@ -171,7 +171,6 @@ window.addEventListener('keydown', (event) => {
             lastKey = 'a'
             break;
         case 'w':
-            // keys.w.pressed = true
             player.velocity.y = -20
             break;
         case ' ':
@@ -188,11 +187,9 @@ window.addEventListener('keydown', (event) => {
             enemy.lastKey = 'ArrowLeft'
             break;
         case 'ArrowUp':
-            // keys.ArrowUp.pressed = true
             enemy.velocity.y = -20
             break;
         case 'ArrowDown':
-            // enemy.isAttaking = true
             enemy.attack()
             break;
         default:
