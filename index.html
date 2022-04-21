@@ -6,10 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .points__and_timer {
+            position: absolute;
+            display: flex;
+        }
+
+        .player__health,
+        .enemy_health {
+            background-color: yellow;
+            height: 30px;
+            width: 100px;
+        }
+
+        .timer {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body style='overflow-x: hidden'>
-    <canvas></canvas>
+    <div class="container">
+        <div class="points__and_timer">
+            <!-- player health -->
+            <div class="player__health"></div>
+            <!-- timer -->
+            <div class="timer"></div>
+            <!-- enemy health -->
+            <div class="enemy_health"></div>
+        </div>
+        <canvas></canvas>
+    </div>
     <script src="index.js">
 
     </script>
