@@ -150,6 +150,8 @@ function animate() {
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttaking) {
         console.log('go')
         player.isAttaking = false
+        // console.log(document.querySelector('.health_wrapper').style.width);
+        document.querySelector('.enemy_health_dynamic_bar').style.width = '20px';
     }
 
     if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttaking) {
