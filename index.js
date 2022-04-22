@@ -24,6 +24,7 @@ class Sprite {
         }
         this.color = color
         this.isAttaking
+        this.health = 100
     }
 
     draw() {
@@ -150,8 +151,8 @@ function animate() {
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttaking) {
         console.log('go')
         player.isAttaking = false
-        // console.log(document.querySelector('.health_wrapper').style.width);
-        document.querySelector('.enemy_health_dynamic_bar').style.width = '20px';
+        enemy.health -= 20;
+        document.querySelector('.enemy_health_dynamic_bar').style.width = `${enemy.health}%`;
     }
 
     if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttaking) {
