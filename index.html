@@ -24,11 +24,11 @@
             padding: 20px;
         }
 
-        .player__health {
+        /* .player__health {
             background-color: yellow;
             height: 30px;
             width: 100%;
-        }
+        } */
 
         .timer {
             background-color: red;
@@ -43,7 +43,8 @@
             width: 100%;
         }
 
-        .enemy_health {
+        .enemy_health,
+        .player_health {
             background-color: yellow;
             height: 30px;
         }
@@ -56,6 +57,15 @@
             right: 0px;
             left: 0px;
         }
+
+        .player_health_dynamic_bar {
+            position: absolute;
+            background-color: blue;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -63,7 +73,10 @@
     <div class="container">
         <div class="points__and_timer">
             <!-- player health -->
-            <div class="player__health"></div>
+            <div class="health_wrapper">
+                <div class="player_health"></div>
+                <div class="player_health_dynamic_bar"></div>
+            </div>
             <!-- timer -->
             <div class="timer"></div>
             <!-- enemy health -->
