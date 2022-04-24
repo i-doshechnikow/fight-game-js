@@ -125,12 +125,27 @@ function rectangularCollision({
     )
 }
 
+var timer = 59;
+var timerSelector = document.querySelector('.timer');
+function decreaseTimer() {
+    let gameTimer = setInterval(() => {
+        if (timer > 0) {
+            timer--
+        } else {
+            clearInterval(gameTimer)
+        }
+    }, 1000);
+
+}
+decreaseTimer()
 function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
     enemy.update();
+
+    timerSelector.innerHTML = timer;
 
     player.velocity.x = 0
 
@@ -163,6 +178,8 @@ function animate() {
         document.querySelector('.player_health_dynamic_bar').style.width = `${player.health}%`;
 
     }
+
+
 }
 
 animate()
