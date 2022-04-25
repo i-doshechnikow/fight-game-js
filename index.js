@@ -125,18 +125,26 @@ function rectangularCollision({
     )
 }
 
-var timer = 59;
+// var timer = 59;
+var timer = 3;
 var timerSelector = document.querySelector('.timer');
+
 function decreaseTimer() {
     let gameTimer = setInterval(() => {
         if (timer > 0) {
             timer--
         } else {
             clearInterval(gameTimer)
+            document.querySelector('.tie').style.display = 'flex'
         }
     }, 1000);
 
+    //1/39/45
+    if (player.health === enemy.health) {
+        console.log('tie')
+    }
 }
+
 decreaseTimer()
 function animate() {
     window.requestAnimationFrame(animate);
