@@ -129,20 +129,24 @@ function rectangularCollision({
 var timer = 3;
 var timerSelector = document.querySelector('.timer');
 
+function stopGame() {
+    if (timer === 0) {
+        document.querySelector('.tie').style.display = 'flex'
+
+        document.querySelector('.tie').innerHTML = player.health === enemy.health ? "Tie" : player.health > enemy.health ? 'Player wins' : 'Enemy wins'
+    }
+};
+
 function decreaseTimer() {
+
     let gameTimer = setInterval(() => {
         if (timer > 0) {
             timer--
         } else {
             clearInterval(gameTimer)
-            document.querySelector('.tie').style.display = 'flex'
+            stopGame();
         }
     }, 1000);
-
-    //1/39/45
-    if (player.health === enemy.health) {
-        console.log('tie')
-    }
 }
 
 decreaseTimer()
