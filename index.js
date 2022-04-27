@@ -125,16 +125,13 @@ function rectangularCollision({
     )
 }
 
-// var timer = 59;
-var timer = 3;
+var timer = 59;
 var timerSelector = document.querySelector('.timer');
 
 function stopGame() {
-    if (timer === 0) {
-        document.querySelector('.tie').style.display = 'flex'
+    document.querySelector('.tie').style.display = 'flex'
 
-        document.querySelector('.tie').innerHTML = player.health === enemy.health ? "Tie" : player.health > enemy.health ? 'Player wins' : 'Enemy wins'
-    }
+    document.querySelector('.tie').innerHTML = player.health === enemy.health ? "Tie" : player.health > enemy.health ? 'Player wins' : 'Enemy wins'
 };
 
 function decreaseTimer() {
@@ -188,9 +185,11 @@ function animate() {
         enemy.isAttaking = false
         player.health -= 20;
         document.querySelector('.player_health_dynamic_bar').style.width = `${player.health}%`;
-
     }
 
+    if (enemy.health < 1 || player.health < 1) {
+        stopGame()
+    }
 
 }
 
