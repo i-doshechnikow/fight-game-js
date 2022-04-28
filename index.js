@@ -129,14 +129,18 @@ var timer = 59;
 var timerSelector = document.querySelector('.timer');
 
 function stopGame() {
+    clearInterval(gameTimer)
+
     document.querySelector('.tie').style.display = 'flex'
 
     document.querySelector('.tie').innerHTML = player.health === enemy.health ? "Tie" : player.health > enemy.health ? 'Player wins' : 'Enemy wins'
 };
 
+let gameTimer;
+
 function decreaseTimer() {
 
-    let gameTimer = setInterval(() => {
+    gameTimer = setInterval(() => {
         if (timer > 0) {
             timer--
         } else {
@@ -190,6 +194,7 @@ function animate() {
     if (enemy.health < 1 || player.health < 1) {
         stopGame()
     }
+    //1/48/29
 
 }
 
