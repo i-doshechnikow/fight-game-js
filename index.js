@@ -43,6 +43,10 @@ const player = new Fighter({
             imageSrc: './wizard/Fall.png',
             framesMax: 2,
         },
+        attack: {
+            imageSrc: './wizard/Attack2.png',
+            framesMax: 8,
+        },
     }
 })
 
