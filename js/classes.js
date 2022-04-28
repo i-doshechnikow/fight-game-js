@@ -53,14 +53,37 @@ class Fighter {
     }
 }
 
+// class Sprite {
+//     constructor({ position, imgSrc }) {
+//         this.position = position
+//         this.width = 50
+//         this.height = 150
+//         this.image = new Image(imgSrc)
+//     }
+
+//     draw() {
+//         c.drawImage(this.image, 0, 0)
+//     }
+
+//     update() {
+//         this.draw()
+//     }
+// }
+
 class Sprite {
-    constructor({ position }) {
+    constructor({
+        position,
+        imageSrc,
+    }) {
         this.position = position
         this.width = 50
         this.height = 150
+        this.image = new Image()
+        this.image.src = imageSrc
     }
 
     draw() {
+        c.drawImage(this.image, 0, 0, 1024, 576)
     }
 
     update() {

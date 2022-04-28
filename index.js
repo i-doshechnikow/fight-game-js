@@ -42,6 +42,15 @@ const enemy = new Fighter({
 })
 
 enemy.draw()
+const imageSrc = './img/background/background_layer_1.png';
+const backgroundImage = new Sprite({ position: { x: 0, y: 0 }, imageSrc })
+
+
+const imageSrcSecond = './img/background/background_layer_2.png';
+const backgroundImageSecond = new Sprite({ position: { x: 0, y: 0 }, imageSrc: imageSrcSecond })
+
+backgroundImage.draw()
+backgroundImageSecond.draw()
 
 const keys = {
     a: {
@@ -58,7 +67,7 @@ const keys = {
     },
 }
 
-let lastKey
+let lastKey;
 
 function rectangularCollision({
     rectangle1,
@@ -102,6 +111,8 @@ function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
+    backgroundImage.update();
+    backgroundImageSecond.update();
     player.update();
     enemy.update();
 
