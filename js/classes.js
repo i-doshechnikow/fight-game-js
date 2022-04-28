@@ -60,7 +60,8 @@ class Fighter extends Sprite {
         scale = 1,
         framesMax = 1,
         framesCurrent = 0,
-        offset = { x: 0, y: 0 }
+        offset = { x: 0, y: 0 },
+        sprites
     }) {
         super({
             position,
@@ -89,6 +90,12 @@ class Fighter extends Sprite {
         this.framesCurrent = framesCurrent
         this.framesElapsed = 0
         this.framesHold = 10
+        this.sprites = sprites
+
+        for (const sprite in this.sprites) {
+            this.sprites[sprite].image = new Image()
+            this.sprites[sprite].image.src = this.sprites[sprite].imageSrc
+        }
     }
 
     // draw() {

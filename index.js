@@ -24,7 +24,18 @@ const player = new Fighter({
     imageSrc: './wizard/Idle.png',
     framesMax: 6,
     scale: 2,
-    offset: { x: 50, y: 132 }
+    offset: { x: 50, y: 132 },
+    sprites: {
+        idle: {
+            imageSrc: './wizard/Idle.png',
+            framesMax: 6,
+
+        },
+        run: {
+            imageSrc: './wizard/Run.png',
+            framesMax: 8,
+        },
+    }
 })
 
 player.draw()
@@ -96,11 +107,17 @@ function animate() {
     timerSelector.innerHTML = timer;
 
     player.velocity.x = 0
+    player.image = player.sprites.idle.image
+    player.framesMax = player.sprites.idle.framesMax
 
     if (keys.a.pressed && lastKey === 'a') {
         player.velocity.x = -5
+        player.image = player.sprites.run.image
+        player.framesMax = player.sprites.run.framesMax
     } else if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 5
+        player.image = player.sprites.run.image
+        player.framesMax = player.sprites.run.framesMax
     }
 
     enemy.velocity.x = 0
