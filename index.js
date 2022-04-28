@@ -50,7 +50,7 @@ const imageSrcSecond = './img/background/background_layer_2.png';
 const backgroundImageSecond = new Sprite({ position: { x: 0, y: 0 }, imageSrc: imageSrcSecond, scale: 3.2 })
 
 const shop = './img/shop_anim.png'
-const shopImage = new Sprite({ position: { x: 550, y: 195 }, imageSrc: shop, scale: 3, })
+const shopImage = new Sprite({ position: { x: 550, y: 195 }, imageSrc: shop, scale: 3, framesMax: 6, framesCurrent: 1 })
 backgroundImage.draw()
 backgroundImageSecond.draw()
 shopImage.draw()
