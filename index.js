@@ -43,14 +43,17 @@ const enemy = new Fighter({
 
 enemy.draw()
 const imageSrc = './img/background/background_layer_1.png';
-const backgroundImage = new Sprite({ position: { x: 0, y: 0 }, imageSrc })
+const backgroundImage = new Sprite({ position: { x: 0, y: 0 }, imageSrc, scale: 3.2 })
 
 
 const imageSrcSecond = './img/background/background_layer_2.png';
-const backgroundImageSecond = new Sprite({ position: { x: 0, y: 0 }, imageSrc: imageSrcSecond })
+const backgroundImageSecond = new Sprite({ position: { x: 0, y: 0 }, imageSrc: imageSrcSecond, scale: 3.2 })
 
+const shop = './img/shop_anim.png'
+const shopImage = new Sprite({ position: { x: 550, y: 195 }, imageSrc: shop, scale: 3, })
 backgroundImage.draw()
 backgroundImageSecond.draw()
+shopImage.draw()
 
 const keys = {
     a: {
@@ -76,6 +79,7 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     backgroundImage.update();
     backgroundImageSecond.update();
+    shopImage.update();
     player.update();
     enemy.update();
 
@@ -115,8 +119,6 @@ function animate() {
     if (enemy.health < 1 || player.health < 1) {
         stopGame()
     }
-    //1/48/29
-
 }
 
 animate()

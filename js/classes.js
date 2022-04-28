@@ -52,38 +52,24 @@ class Fighter {
         }, 100)
     }
 }
-
-// class Sprite {
-//     constructor({ position, imgSrc }) {
-//         this.position = position
-//         this.width = 50
-//         this.height = 150
-//         this.image = new Image(imgSrc)
-//     }
-
-//     draw() {
-//         c.drawImage(this.image, 0, 0)
-//     }
-
-//     update() {
-//         this.draw()
-//     }
-// }
-
 class Sprite {
     constructor({
         position,
         imageSrc,
+        width = 50,
+        height = 150,
+        scale = 1,
     }) {
         this.position = position
-        this.width = 50
-        this.height = 150
+        this.width = width
+        this.height = height
         this.image = new Image()
         this.image.src = imageSrc
+        this.scale = scale
     }
 
     draw() {
-        c.drawImage(this.image, 0, 0, 1024, 576)
+        c.drawImage(this.image, this.position.x, this.position.y, this.image.width * this.scale, this.image.height * this.scale)
     }
 
     update() {
