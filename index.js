@@ -21,6 +21,10 @@ const player = new Fighter({
         x: 0,
         y: 0,
     },
+    imageSrc: './wizard/Idle.png',
+    framesMax: 6,
+    scale: 2,
+    offset: { x: 50, y: 132 }
 })
 
 player.draw()
@@ -49,10 +53,14 @@ const backgroundImage = new Sprite({ position: { x: 0, y: 0 }, imageSrc, scale: 
 const imageSrcSecond = './img/background/background_layer_2.png';
 const backgroundImageSecond = new Sprite({ position: { x: 0, y: 0 }, imageSrc: imageSrcSecond, scale: 3.2 })
 
+const imageSrcThird = './img/background/background_layer_3.png';
+const backgroundImageThird = new Sprite({ position: { x: 0, y: 0 }, imageSrc: imageSrcThird, scale: 3.2 })
+
 const shop = './img/shop_anim.png'
 const shopImage = new Sprite({ position: { x: 550, y: 195 }, imageSrc: shop, scale: 3, framesMax: 6, framesCurrent: 1 })
 backgroundImage.draw()
 backgroundImageSecond.draw()
+backgroundImageThird.draw()
 shopImage.draw()
 
 const keys = {
@@ -79,9 +87,11 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     backgroundImage.update();
     backgroundImageSecond.update();
+    backgroundImageThird.update();
     shopImage.update();
+
     player.update();
-    enemy.update();
+    // enemy.update();
 
     timerSelector.innerHTML = timer;
 
