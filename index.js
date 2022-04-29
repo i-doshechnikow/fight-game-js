@@ -69,7 +69,7 @@ const enemy = new Fighter({
     imageSrc: './enemy/Idle.png',
     framesMax: 8,
     scale: 3,
-    offset: { x: 150, y: 350 },
+    offset: { x: 50, y: 350 },
     sprites: {
         idle: {
             imageSrc: './enemy/Idle.png',
