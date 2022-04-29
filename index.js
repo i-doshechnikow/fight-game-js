@@ -65,7 +65,34 @@ const enemy = new Fighter({
         x: -50,
         y: 0,
     },
-    color: 'blue'
+    color: 'blue',
+    imageSrc: './wizard/Idle.png',
+    framesMax: 6,
+    scale: 2,
+    offset: { x: 50, y: 132 },
+    sprites: {
+        idle: {
+            imageSrc: './wizard/Idle.png',
+            framesMax: 6,
+
+        },
+        run: {
+            imageSrc: './wizard/Run.png',
+            framesMax: 8,
+        },
+        jump: {
+            imageSrc: './wizard/Jump.png',
+            framesMax: 2,
+        },
+        fall: {
+            imageSrc: './wizard/Fall.png',
+            framesMax: 2,
+        },
+        attack: {
+            imageSrc: './wizard/Attack2.png',
+            framesMax: 8,
+        },
+    }
 })
 
 enemy.draw()
@@ -114,7 +141,7 @@ function animate() {
     shopImage.update();
 
     player.update();
-    // enemy.update();
+    enemy.update();
 
     timerSelector.innerHTML = timer;
 
@@ -140,8 +167,18 @@ function animate() {
 
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
         enemy.velocity.x = -5
+        enemy.switchSprite('run');
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
         enemy.velocity.x = 5
+        enemy.switchSprite('run');
+    } else {
+        enemy.switchSprite('idle');
+    }
+
+    if (enemy.velocity.y < 0) {
+        enemy.switchSprite('jump');
+    } else if (enemy.velocity.y > 0) {
+        enemy.switchSprite('fall');
     }
 
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttaking) {
