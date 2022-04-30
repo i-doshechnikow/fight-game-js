@@ -10,21 +10,17 @@ const gravity = 0.7
 
 const player = new Fighter({
     position: {
-        x: 0,
+        x: 200,
         y: 0
     },
     velocity: {
         x: 0,
         y: 0
     },
-    offset: {
-        x: 0,
-        y: 0,
-    },
     imageSrc: './wizard/Idle.png',
     framesMax: 6,
     scale: 2,
-    offset: { x: 50, y: 132 },
+    offset: { x: 190, y: 132 },
     sprites: {
         idle: {
             imageSrc: './wizard/Idle.png',
@@ -50,7 +46,7 @@ const player = new Fighter({
     },
     attackBox: {
         offset: {
-            x: 270,
+            x: 140,
             y: 0
         },
         width: 110,
@@ -62,22 +58,18 @@ player.draw()
 
 const enemy = new Fighter({
     position: {
-        x: 400,
+        x: 750,
         y: 100
     },
     velocity: {
         x: 0,
         y: 0
     },
-    offset: {
-        x: -50,
-        y: 0,
-    },
     color: 'blue',
     imageSrc: './enemy/Idle.png',
     framesMax: 8,
     scale: 3,
-    offset: { x: 50, y: 350 },
+    offset: { x: 350, y: 350 },
     sprites: {
         idle: {
             imageSrc: './enemy/Idle.png',
@@ -96,13 +88,13 @@ const enemy = new Fighter({
             framesMax: 2,
         },
         attack: {
-            imageSrc: './enemy/Attack1.png',
+            imageSrc: './enemy/Attack2.png',
             framesMax: 8,
         },
     },
     attackBox: {
         offset: {
-            x: 90,
+            x: -150,
             y: 0
         },
         width: 120,
@@ -213,6 +205,10 @@ function animate() {
         enemy.isAttaking = false
         player.health -= 20;
         document.querySelector('.player_health_dynamic_bar').style.width = `${player.health}%`;
+    }
+
+    if (enemy.isAttaking && enemy.framesCurrent === 4) {
+        enemy.isAttaking = false
     }
 
     if (enemy.health < 1 || player.health < 1) {
