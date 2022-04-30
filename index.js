@@ -43,6 +43,10 @@ const player = new Fighter({
             imageSrc: './wizard/Attack2.png',
             framesMax: 8,
         },
+        hit: {
+            imageSrc: './wizard/Hit.png',
+            framesMax: 4,
+        },
     },
     attackBox: {
         offset: {
@@ -90,6 +94,10 @@ const enemy = new Fighter({
         attack: {
             imageSrc: './enemy/Attack2.png',
             framesMax: 8,
+        },
+        hit: {
+            imageSrc: './enemy/Take hit.png',
+            framesMax: 3,
         },
     },
     attackBox: {
@@ -190,6 +198,7 @@ function animate() {
 
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttaking && player.framesCurrent === 4) {
         console.log('go')
+        enemy.switchSprite('hit')
         player.isAttaking = false
         enemy.health -= 20;
         document.querySelector('.enemy_health_dynamic_bar').style.width = `${enemy.health}%`;
@@ -199,9 +208,9 @@ function animate() {
         player.isAttaking = false
     }
 
-    if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttaking) {
+    if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttaking && player.framesCurrent === 4) {
         console.log('go enemy')
-
+        player.switchSprite('hit')
         enemy.isAttaking = false
         player.health -= 20;
         document.querySelector('.player_health_dynamic_bar').style.width = `${player.health}%`;
