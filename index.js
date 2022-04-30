@@ -47,6 +47,14 @@ const player = new Fighter({
             imageSrc: './wizard/Attack2.png',
             framesMax: 8,
         },
+    },
+    attackBox: {
+        offset: {
+            x: 270,
+            y: 0
+        },
+        width: 110,
+        height: 50
     }
 })
 
@@ -91,6 +99,14 @@ const enemy = new Fighter({
             imageSrc: './enemy/Attack1.png',
             framesMax: 8,
         },
+    },
+    attackBox: {
+        offset: {
+            x: 90,
+            y: 0
+        },
+        width: 120,
+        height: 50
     }
 })
 
@@ -180,11 +196,15 @@ function animate() {
         enemy.switchSprite('fall');
     }
 
-    if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttaking) {
+    if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttaking && player.framesCurrent === 4) {
         console.log('go')
         player.isAttaking = false
         enemy.health -= 20;
         document.querySelector('.enemy_health_dynamic_bar').style.width = `${enemy.health}%`;
+    }
+
+    if (player.isAttaking && player.framesCurrent === 4) {
+        player.isAttaking = false
     }
 
     if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttaking) {
