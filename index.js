@@ -47,6 +47,10 @@ const player = new Fighter({
             imageSrc: './wizard/Hit.png',
             framesMax: 4,
         },
+        death: {
+            imageSrc: './wizard/Death.png',
+            framesMax: 7,
+        },
     },
     attackBox: {
         offset: {
@@ -98,6 +102,10 @@ const enemy = new Fighter({
         hit: {
             imageSrc: './enemy/Take hit.png',
             framesMax: 3,
+        },
+        death: {
+            imageSrc: './enemy/Death.png',
+            framesMax: 7,
         },
     },
     attackBox: {
@@ -168,6 +176,8 @@ function animate() {
     } else if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 5
         player.switchSprite('run');
+    } else if (player.health <= 0) {
+        player.switchSprite('death')
     } else {
         player.switchSprite('idle');
     }
@@ -186,6 +196,8 @@ function animate() {
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
         enemy.velocity.x = 5
         enemy.switchSprite('run');
+    } else if (enemy.health <= 0) {
+        enemy.switchSprite('death')
     } else {
         enemy.switchSprite('idle');
     }
@@ -228,6 +240,8 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
+    if (player.dead || enemy.dead) return
+
     switch (event.key) {
         case 'd':
             keys.d.pressed = true
