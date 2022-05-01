@@ -163,6 +163,9 @@ function animate() {
     backgroundImageThird.update();
     shopImage.update();
 
+    c.fillStyle = 'rgba(255, 255, 255, 0.1)'
+    c.fillRect(0, 0, canvas.width, canvas.height)
+
     player.update();
     enemy.update();
 
@@ -213,7 +216,12 @@ function animate() {
         enemy.switchSprite('hit')
         player.isAttaking = false
         enemy.health -= 20;
-        document.querySelector('.enemy_health_dynamic_bar').style.width = `${enemy.health}%`;
+
+        // document.querySelector('.enemy_health_dynamic_bar').style.width = `${enemy.health}%`;
+
+        gsap.to('.enemy_health_dynamic_bar', {
+            width: `${enemy.health}%`
+        })
     }
 
     if (player.isAttaking && player.framesCurrent === 4) {
@@ -225,7 +233,10 @@ function animate() {
         player.switchSprite('hit')
         enemy.isAttaking = false
         player.health -= 20;
-        document.querySelector('.player_health_dynamic_bar').style.width = `${player.health}%`;
+
+        gsap.to('.player_health_dynamic_bar', {
+            width: `${enemy.health}%`
+        })
     }
 
     if (enemy.isAttaking && enemy.framesCurrent === 4) {
