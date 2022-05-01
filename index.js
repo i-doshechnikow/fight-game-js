@@ -217,8 +217,6 @@ function animate() {
         player.isAttaking = false
         enemy.health -= 20;
 
-        // document.querySelector('.enemy_health_dynamic_bar').style.width = `${enemy.health}%`;
-
         gsap.to('.enemy_health_dynamic_bar', {
             width: `${enemy.health}%`
         })
